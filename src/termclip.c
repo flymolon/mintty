@@ -243,6 +243,17 @@ term_paste(wchar *data, uint len, bool all)
 }
 
 void
+term_paste_selection()
+{
+  if (!term.selected)
+    return;
+  clip_workbuf *buf = get_selection(term.sel_start, term.sel_end, term.sel_rect, false);
+  term_paste(buf->text, buf->len, true);
+
+  destroy_clip_workbuf(buf);
+}
+
+void
 term_cancel_paste(void)
 {
   if (term.paste_buffer) {

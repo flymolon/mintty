@@ -1634,11 +1634,16 @@ win_key_down(WPARAM wp, LPARAM lp)
       goto skip_shortcuts;
 
     // Copy&paste
-    if (cfg.clip_shortcuts && key == VK_INSERT && mods && !alt) {
-      if (ctrl)
-        term_copy();
-      if (shift)
-        win_paste();
+    if (cfg.clip_shortcuts && key == VK_INSERT && mods) {
+      if (alt) {
+        if (!ctrl && !shift)
+        term_paste_selection();
+      } else {
+        if (ctrl)
+          term_copy();
+        if (shift)
+          win_paste();
+      }
       return true;
     }
 

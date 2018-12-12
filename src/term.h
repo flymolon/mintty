@@ -557,6 +557,7 @@ extern void term_open(void);
 extern void term_copy(void);
 extern void term_copy_as(char what);
 extern void term_paste(wchar *, uint len, bool all);
+extern void term_paste_selection();
 extern void term_send_paste(void);
 extern void term_cancel_paste(void);
 extern void term_cmd(char * cmdpat);
